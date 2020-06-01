@@ -1,19 +1,28 @@
-FROM alpine:3.10.2
+FROM alpine:3.11
 
 LABEL author="Sergey Bovyrin <s.bovyrin@icloud.com>" \
-  vesion="1.1.0" \
+  vesion="1.2.0" \
   description="Lightweight docker image based on Alpine to run pumped adminer." \
   exposed_port="9000" \
   workdir="/opt" \
-  default_adminer_version="4.7.3" \
+  default_adminer_version="4.7.7" \
   default_php_membory_limit="256M" \
   default_php_post_max_size="64M"
 
-ARG VERSION="4.7.3"
+ARG VERSION="4.7.7"
 ARG MEMORY_LIMIT="256M"
 ARG POST_MAX_SIZE="64M"
 
-RUN apk --no-cache add curl php7 php7-session php7-pdo_mysql \
+RUN apk --no-cache add \
+    curl \
+    php7 \
+    php7-session \
+    php7-pdo \
+    php7-pgsql \
+    php7-pdo_pgsql \
+    php7-sqlite3 \
+    php7-pdo_sqlite \
+    php7-pdo_mysql \
   && mkdir -p /opt/plugins \
   && curl -L -o /opt/adminer.php https://github.com/vrana/adminer/releases/download/v${VERSION}/adminer-${VERSION}-en.php \
   && curl -o /opt/plugins/plugin.php https://raw.githubusercontent.com/vrana/adminer/master/plugins/plugin.php \
