@@ -1,7 +1,7 @@
 FROM alpine:3.13
 
 LABEL author="Sergey Bovyrin <sbovyrin@gmail.com>" \
-      description="Lightweight docker image based on Alpine for adminer." \
+      description="Lightweight docker image based on Alpine for adminer."
 
 ARG VERSION="4.7.7"
 ARG MEMORY_LIMIT="256M"
